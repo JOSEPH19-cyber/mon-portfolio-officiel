@@ -1,7 +1,17 @@
 <script setup>
+import { ref } from 'vue'
 import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/outline'
 import SectionTitle from '@/components/ui/SectionTitle.vue'
 import portfolio from '@/data/portfolio'
+
+// --------------------------------------------
+// GESTION DU TAP SUR MOBILE
+// --------------------------------------------
+const activeProjectIndex = ref(null)
+
+const toggleOverlay = (index) => {
+  activeProjectIndex.value = activeProjectIndex.value === index ? null : index
+}
 </script>
 
 <template>
@@ -27,11 +37,12 @@ import portfolio from '@/data/portfolio'
           :key="project.title"
           class="reveal group relative rounded-3xl overflow-hidden
                  glass transition-all duration-500
-                 hover:-translate-y-2
-                 hover:border-primary-500/40
-                 hover:shadow-2xl hover:shadow-primary-500/20
-                 cursor-default"
+                 md:hover:-translate-y-2
+                 md:hover:border-primary-500/40
+                 md:hover:shadow-2xl md:hover:shadow-primary-500/20
+                 cursor-pointer md:cursor-default"
           :style="{ transitionDelay: `${index * 100}ms` }"
+          @click="toggleOverlay(index)"
         >
           <!-- ============================================ -->
           <!-- IMAGE DU PROJET                              -->
@@ -42,34 +53,42 @@ import portfolio from '@/data/portfolio'
               :alt="project.title"
               class="w-full h-full object-cover object-top
                      transition-transform duration-700
-                     group-hover:scale-110"
+                     md:group-hover:scale-110"
+              :class="activeProjectIndex === index ? 'scale-110' : ''"
               loading="lazy"
               onerror="this.style.display='none'; this.parentElement.classList.add('bg-gradient-to-br', 'from-primary-500/20', 'to-accent-500/20');"
             />
 
             <!-- Badge "Voir le site" en haut à droite -->
             <div class="absolute top-4 right-4 z-20">
-              <div class="w-10 h-10 rounded-xl glass flex items-center justify-center
-                          opacity-0 group-hover:opacity-100
-                          translate-y-2 group-hover:translate-y-0
-                          transition-all duration-300">
+              <div
+                class="w-10 h-10 rounded-xl glass flex items-center justify-center
+                       transition-all duration-300
+                       md:opacity-0 md:group-hover:opacity-100
+                       md:translate-y-2 md:group-hover:translate-y-0"
+                :class="activeProjectIndex === index ? 'md:opacity-100 md:translate-y-0' : ''"
+              >
                 <ArrowTopRightOnSquareIcon class="w-5 h-5 text-primary-400" />
               </div>
             </div>
 
             <!-- ============================================ -->
-            <!-- OVERLAY AU HOVER                             -->
+            <!-- OVERLAY (hover desktop + tap mobile)         -->
             <!-- ============================================ -->
             <div
               class="absolute inset-0 z-10
                      bg-gradient-to-t from-dark-bg via-dark-bg/80 to-transparent
-                     opacity-0 group-hover:opacity-100
                      transition-opacity duration-500
-                     flex flex-col justify-end p-6 md:p-8"
+                     flex flex-col justify-end p-6 md:p-8
+                     md:opacity-0 md:group-hover:opacity-100"
+              :class="activeProjectIndex === index ? 'opacity-100' : 'opacity-0 md:opacity-0'"
             >
-              <!-- Contenu overlay (slide up au hover) -->
-              <div class="translate-y-6 group-hover:translate-y-0 transition-transform duration-500">
-
+              <!-- Contenu overlay -->
+              <div
+                class="transition-transform duration-500
+                       md:translate-y-6 md:group-hover:translate-y-0"
+                :class="activeProjectIndex === index ? 'translate-y-0 md:translate-y-0' : 'translate-y-6 md:translate-y-6'"
+              >
                 <!-- Titre -->
                 <h3 class="font-display text-2xl md:text-3xl font-bold text-white mb-3">
                   {{ project.title }}
@@ -98,6 +117,7 @@ import portfolio from '@/data/portfolio'
                   :href="project.link"
                   target="_blank"
                   rel="noopener noreferrer"
+                  @click.stop
                   class="inline-flex items-center gap-2 px-4 py-2 rounded-xl
                          text-sm font-semibold
                          bg-gradient-to-r from-primary-500 to-accent-500
@@ -115,9 +135,13 @@ import portfolio from '@/data/portfolio'
           </div>
 
           <!-- ============================================ -->
-          <!-- TITRE VISIBLE PAR DÉFAUT (sous l'image)      -->
+          <!-- TITRE SOUS L'IMAGE (visible par défaut)      -->
           <!-- ============================================ -->
-          <div class="p-6 border-t border-white/5 group-hover:opacity-0 transition-opacity duration-300">
+          <div
+            class="p-6 border-t border-white/5 transition-opacity duration-300
+                   md:group-hover:opacity-0"
+            :class="activeProjectIndex === index ? 'md:opacity-0 opacity-0' : ''"
+          >
             <div class="flex items-center justify-between gap-4">
               <h3 class="font-display text-lg font-bold text-white truncate">
                 {{ project.title }}
@@ -135,7 +159,6 @@ import portfolio from '@/data/portfolio'
 </template>
 
 <style scoped>
-/* Limite le texte à 3 lignes dans l'overlay */
 .line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;

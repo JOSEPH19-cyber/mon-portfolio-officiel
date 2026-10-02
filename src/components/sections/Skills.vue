@@ -10,7 +10,7 @@ import SectionTitle from '@/components/ui/SectionTitle.vue'
 import GlassCard from '@/components/ui/GlassCard.vue'
 import portfolio from '@/data/portfolio'
 
-// Import des icônes Devicon (uniquement celles utilisées)
+// Import des icônes Devicon
 import Html5OriginalIcon from '@devicon/vue/html5/original'
 import Css3OriginalIcon from '@devicon/vue/css3/original'
 import JavascriptOriginalIcon from '@devicon/vue/javascript/original'
@@ -72,15 +72,23 @@ const categoryIcons = {
           :reveal="true"
           padding="p-6 md:p-8"
         >
-          <!-- Header de catégorie -->
-          <div class="flex items-center gap-3 mb-6">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500/15 to-accent-500/15 border border-primary-500/20 flex items-center justify-center">
-              <component :is="categoryIcons[category.icon]" class="w-5 h-5 text-primary-400" />
+          <!-- ============================================ -->
+          <!-- Header de catégorie                          -->
+          <!-- ============================================ -->
+          <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-3 mb-6">
+            <!-- Icône + Titre -->
+            <div class="flex items-center gap-3 min-w-0 md:flex-1">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500/15 to-accent-500/15 border border-primary-500/20 flex items-center justify-center flex-shrink-0">
+                <component :is="categoryIcons[category.icon]" class="w-5 h-5 text-primary-400" />
+              </div>
+              <h3 class="font-display text-lg md:text-xl font-bold text-white">
+                {{ category.category }}
+              </h3>
             </div>
-            <h3 class="font-display text-lg md:text-xl font-bold text-white">
-              {{ category.category }}
-            </h3>
-            <span class="ml-auto text-xs text-slate-500 font-medium">
+
+            <!-- Compteur (aligné sous le titre sur mobile grâce à pl-13) -->
+            <span class="text-xs text-slate-500 font-medium whitespace-nowrap
+                         pl-13 md:pl-0 md:ml-auto">
               {{ category.items.length }} {{ category.items.length > 1 ? 'technos' : 'techno' }}
             </span>
           </div>
@@ -96,13 +104,11 @@ const categoryIcons = {
                      hover:-translate-y-0.5
                      transition-all duration-300 cursor-default"
             >
-              <!-- Icône Devicon -->
               <component
                 :is="iconComponents[skill.icon]"
                 v-if="iconComponents[skill.icon]"
                 class="w-6 h-6 flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
               />
-              <!-- Fallback si pas d'icône Devicon (Merise, Excel) -->
               <div
                 v-else
                 class="w-6 h-6 flex-shrink-0 rounded-md bg-gradient-to-br from-primary-500/20 to-accent-500/20 flex items-center justify-center"
@@ -110,7 +116,6 @@ const categoryIcons = {
                 <span class="text-[10px] font-bold text-primary-400">{{ skill.name[0] }}</span>
               </div>
 
-              <!-- Nom -->
               <span class="text-sm font-medium text-slate-300 group-hover:text-white transition-colors">
                 {{ skill.name }}
               </span>
