@@ -5,7 +5,6 @@ import { ArrowUpIcon } from '@heroicons/vue/24/outline'
 const visible = ref(false)
 
 const handleScroll = () => {
-  // Apparaît après 500px de scroll
   visible.value = window.scrollY > 500
 }
 
@@ -48,7 +47,7 @@ onUnmounted(() => {
              hover:shadow-lg hover:shadow-primary-500/40
              glow-primary"
     >
-      <!-- Halo gradient derrière -->
+      <!-- Halo gradient au hover -->
       <span
         class="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100
                bg-gradient-to-br from-primary-500/20 to-accent-500/20
@@ -57,7 +56,7 @@ onUnmounted(() => {
 
       <!-- Icône -->
       <ArrowUpIcon
-        class="relative w-5 h-5 md:w-6 md:h-6 text-primary-400
+        class="relative w-5 h-5 md:w-6 md:h-6 text-primary-500 dark:text-primary-400
                transition-transform duration-300
                group-hover:-translate-y-0.5"
       />

@@ -45,7 +45,9 @@ const serviceIcons = {
           class="h-full group"
         >
           <!-- Numéro en arrière-plan (décoratif) -->
-          <span class="absolute top-4 right-5 font-display text-5xl md:text-6xl font-bold text-white/[0.04] select-none group-hover:text-primary-500/10 transition-colors duration-500">
+          <span class="absolute top-4 right-5 font-display text-5xl md:text-6xl font-bold
+                       text-slate-900/[0.04] dark:text-white/[0.04]
+                       select-none group-hover:text-primary-500/10 transition-colors duration-500">
             0{{ index + 1 }}
           </span>
 
@@ -58,22 +60,25 @@ const serviceIcons = {
                         transition-all duration-500">
               <component
                 :is="serviceIcons[service.icon]"
-                class="w-7 h-7 text-primary-400 group-hover:text-primary-300 transition-colors"
+                class="w-7 h-7 text-primary-600 dark:text-primary-400 group-hover:text-primary-500 dark:group-hover:text-primary-300 transition-colors"
               />
             </div>
           </div>
 
           <!-- Titre -->
-          <h3 class="font-display text-lg md:text-xl font-bold text-white mb-3 group-hover:text-primary-400 transition-colors duration-300">
+          <h3 class="font-display text-lg md:text-xl font-bold mb-3
+                     text-slate-900 dark:text-white
+                     group-hover:text-primary-600 dark:group-hover:text-primary-400
+                     transition-colors duration-300">
             {{ service.title }}
           </h3>
 
           <!-- Description -->
-          <p class="text-sm text-slate-400 leading-relaxed">
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
             {{ service.description }}
           </p>
 
-          <!-- Ligne décorative en bas (apparaît au hover) -->
+          <!-- Ligne décorative en bas (hover) -->
           <div class="mt-6 h-px w-0 group-hover:w-full bg-gradient-to-r from-primary-500 to-accent-500 transition-all duration-500"></div>
         </GlassCard>
       </div>

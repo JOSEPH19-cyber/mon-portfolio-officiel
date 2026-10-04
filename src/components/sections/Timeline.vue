@@ -20,7 +20,7 @@ const categoryIcons = {
 // Configuration des couleurs par catégorie
 const categoryColors = {
   primary: {
-    icon: 'text-primary-400',
+    icon: 'text-primary-600 dark:text-primary-400',
     iconBg: 'bg-primary-500/10',
     iconBorder: 'border-primary-500/30',
     dot: 'bg-primary-500',
@@ -29,7 +29,7 @@ const categoryColors = {
     lineTo: 'to-primary-500/10',
   },
   accent: {
-    icon: 'text-accent-400',
+    icon: 'text-accent-600 dark:text-accent-400',
     iconBg: 'bg-accent-500/10',
     iconBorder: 'border-accent-500/30',
     dot: 'bg-accent-500',
@@ -38,7 +38,7 @@ const categoryColors = {
     lineTo: 'to-accent-500/10',
   },
   green: {
-    icon: 'text-green-400',
+    icon: 'text-green-600 dark:text-green-400',
     iconBg: 'bg-green-500/10',
     iconBorder: 'border-green-500/30',
     dot: 'bg-green-500',
@@ -48,7 +48,7 @@ const categoryColors = {
   },
 }
 
-// Convertit l'objet timeline en tableau pour itérer proprement
+// Convertit l'objet timeline en tableau
 const categories = Object.values(portfolio.timeline)
 </script>
 
@@ -81,7 +81,7 @@ const categories = Object.values(portfolio.timeline)
           <!-- ============================================ -->
           <!-- EN-TÊTE DE CARTE                             -->
           <!-- ============================================ -->
-          <div class="flex items-center gap-3 mb-6 pb-5 border-b border-white/5">
+          <div class="flex items-center gap-3 mb-6 pb-5 border-b border-slate-900/5 dark:border-white/5">
             <div
               class="w-11 h-11 rounded-xl flex items-center justify-center border flex-shrink-0"
               :class="[
@@ -96,7 +96,7 @@ const categories = Object.values(portfolio.timeline)
               />
             </div>
             <div class="min-w-0">
-              <h3 class="font-display text-lg font-bold text-white">
+              <h3 class="font-display text-lg font-bold text-slate-900 dark:text-white">
                 {{ category.title }}
               </h3>
               <p class="text-xs text-slate-500 truncate">{{ category.institution }}</p>
@@ -107,14 +107,14 @@ const categories = Object.values(portfolio.timeline)
           <!-- MINI-TIMELINE INTERNE                        -->
           <!-- ============================================ -->
           <div class="relative">
-            <!-- Ligne verticale en arrière-plan -->
+            <!-- Ligne verticale -->
             <div
               v-if="category.items.length > 1"
               class="absolute left-[5px] top-3 bottom-3 w-px"
               :class="`bg-gradient-to-b ${categoryColors[category.color].line} ${categoryColors[category.color].lineTo}`"
             ></div>
 
-            <!-- Items de la catégorie -->
+            <!-- Items -->
             <div class="space-y-6">
               <div
                 v-for="(item, index) in category.items"
@@ -123,13 +123,11 @@ const categories = Object.values(portfolio.timeline)
               >
                 <!-- Point lumineux -->
                 <div class="relative flex-shrink-0 mt-1.5">
-                  <!-- Halo de glow -->
                   <div
                     class="absolute inset-0 rounded-full blur-md opacity-60"
                     :class="categoryColors[category.color].dot"
                   ></div>
 
-                  <!-- Point -->
                   <div
                     class="relative w-2.5 h-2.5 rounded-full shadow-lg"
                     :class="[
@@ -145,7 +143,7 @@ const categories = Object.values(portfolio.timeline)
                   <!-- Titre + Année -->
                   <div class="flex items-baseline justify-between gap-2 mb-1 flex-wrap">
                     <h4
-                      class="font-semibold text-sm text-white uppercase tracking-wider"
+                      class="font-semibold text-sm text-slate-900 dark:text-white uppercase tracking-wider"
                       :class="item.upcoming ? 'opacity-60' : ''"
                     >
                       {{ item.title }}
@@ -160,13 +158,13 @@ const categories = Object.values(portfolio.timeline)
 
                   <!-- Description -->
                   <p
-                    class="text-xs text-slate-400 leading-relaxed"
+                    class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed"
                     :class="item.upcoming ? 'opacity-60' : ''"
                   >
                     {{ item.description }}
                   </p>
 
-                  <!-- ✨ Lien vers le certificat PDF -->
+                  <!-- Lien vers le certificat PDF -->
                   <a
                     v-if="item.pdfLink"
                     :href="item.pdfLink"
@@ -187,8 +185,8 @@ const categories = Object.values(portfolio.timeline)
                     class="inline-flex items-center gap-1.5 mt-2 px-2 py-0.5 rounded-full
                            bg-green-500/10 border border-green-500/20"
                   >
-                    <span class="w-1 h-1 rounded-full bg-green-400 animate-pulse"></span>
-                    <span class="text-[9px] font-semibold text-green-400 uppercase tracking-wider">
+                    <span class="w-1 h-1 rounded-full bg-green-500 dark:bg-green-400 animate-pulse"></span>
+                    <span class="text-[9px] font-semibold text-green-600 dark:text-green-400 uppercase tracking-wider">
                       À venir
                     </span>
                   </span>

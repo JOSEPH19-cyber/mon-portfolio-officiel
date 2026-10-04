@@ -73,12 +73,10 @@ const scrollToSection = (href) => {
 <template>
   <footer class="relative pt-20 pb-24 md:pb-8 px-6">
     <!-- ============================================ -->
-    <!-- LIGNE DE DÉMARCATION RENFORCÉE               -->
+    <!-- LIGNE DE DÉMARCATION                         -->
     <!-- ============================================ -->
     <div class="absolute top-0 left-0 right-0">
-      <!-- Ligne de base (visible sur mobile + desktop) -->
-      <div class="h-px w-full bg-white/20"></div>
-      <!-- Ligne gradient néon (pleine largeur sur mobile) -->
+      <div class="h-px w-full bg-slate-900/10 dark:bg-white/20"></div>
       <div class="absolute top-0 left-1/2 -translate-x-1/2 h-px w-full md:w-1/2
                   bg-gradient-to-r from-transparent via-primary-500/70 to-transparent"></div>
     </div>
@@ -99,14 +97,14 @@ const scrollToSection = (href) => {
           >
             Portfolio.
           </a>
-          <p class="text-sm text-slate-400 leading-relaxed max-w-xs">
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed max-w-xs">
             {{ portfolio.identity.tagline }}
           </p>
         </div>
 
         <!-- COLONNE 2 : Navigation -->
         <div>
-          <h3 class="font-display font-semibold text-white text-sm uppercase tracking-wider mb-5">
+          <h3 class="font-display font-semibold text-slate-900 dark:text-white text-sm uppercase tracking-wider mb-5">
             Navigation
           </h3>
           <ul class="space-y-3">
@@ -114,11 +112,11 @@ const scrollToSection = (href) => {
               <a
                 :href="link.href"
                 @click.prevent="scrollToSection(link.href)"
-                class="text-sm text-slate-400 hover:text-primary-400
+                class="text-sm text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400
                        transition-colors duration-300 cursor-pointer
                        inline-flex items-center gap-2 group"
               >
-                <span class="w-0 group-hover:w-3 h-px bg-primary-400 transition-all duration-300"></span>
+                <span class="w-0 group-hover:w-3 h-px bg-primary-500 dark:bg-primary-400 transition-all duration-300"></span>
                 {{ link.name }}
               </a>
             </li>
@@ -127,12 +125,12 @@ const scrollToSection = (href) => {
 
         <!-- COLONNE 3 : Services -->
         <div>
-          <h3 class="font-display font-semibold text-white text-sm uppercase tracking-wider mb-5">
+          <h3 class="font-display font-semibold text-slate-900 dark:text-white text-sm uppercase tracking-wider mb-5">
             Services
           </h3>
           <ul class="space-y-3">
             <li v-for="service in services" :key="service">
-              <span class="text-sm text-slate-400 leading-relaxed block">
+              <span class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed block">
                 {{ service }}
               </span>
             </li>
@@ -141,7 +139,7 @@ const scrollToSection = (href) => {
 
         <!-- COLONNE 4 : Me contacter -->
         <div>
-          <h3 class="font-display font-semibold text-white text-sm uppercase tracking-wider mb-5">
+          <h3 class="font-display font-semibold text-slate-900 dark:text-white text-sm uppercase tracking-wider mb-5">
             Me contacter
           </h3>
           <div class="flex flex-wrap gap-3">
@@ -153,9 +151,10 @@ const scrollToSection = (href) => {
               rel="noopener noreferrer"
               :aria-label="social.name"
               class="group w-10 h-10 rounded-xl glass flex items-center justify-center
-                     text-slate-400 transition-all duration-300
-                     hover:scale-110 hover:border-primary-500/40 hover:bg-white/5
-                     hover:text-primary-400"
+                     text-slate-500 dark:text-slate-400 transition-all duration-300
+                     hover:scale-110 hover:border-primary-500/40
+                     hover:bg-slate-900/5 dark:hover:bg-white/5
+                     hover:text-primary-600 dark:hover:text-primary-400"
             >
               <!-- Simple Icons -->
               <svg
@@ -188,33 +187,31 @@ const scrollToSection = (href) => {
       <!-- ============================================ -->
       <!-- SÉPARATEUR GRADIENT                          -->
       <!-- ============================================ -->
-      <div class="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent mb-6"></div>
+      <div class="h-px w-full bg-gradient-to-r from-transparent via-slate-900/10 dark:via-white/10 to-transparent mb-6"></div>
 
       <!-- ============================================ -->
-      <!-- COPYRIGHT (3 zones flex-1)                    -->
-      <!-- Mobile : empilé (Fait avec, puis Copyright)   -->
-      <!-- Desktop : Fait avec (gauche) · Copyright (centre) · vide (droite) -->
+      <!-- COPYRIGHT                                    -->
       <!-- ============================================ -->
       <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
 
-        <!-- 1️Fait avec et Vue.js — GAUCHE sur desktop -->
+        <!-- Fait avec ❤ et Vue.js -->
         <p class="flex-1 text-xs md:text-sm text-slate-500
                   flex items-center gap-1.5
                   justify-center md:justify-start">
           Fait avec
-          <span class="text-red-400 animate-pulse">❤</span>
+          <span class="text-red-500 dark:text-red-400 animate-pulse">❤</span>
           et
           <span class="gradient-text font-semibold">Vue.js</span>
         </p>
 
-        <!-- 2️⃣ Copyright — CENTRE sur desktop -->
+        <!-- Copyright -->
         <p class="flex-1 text-xs md:text-sm text-slate-500 text-center">
           © {{ currentYear }}
-          <span class="text-slate-400 font-medium">{{ portfolio.identity.fullName }}</span>
+          <span class="text-slate-700 dark:text-slate-400 font-medium">{{ portfolio.identity.fullName }}</span>
           · Tous droits réservés.
         </p>
 
-        <!-- 3️⃣ Zone vide — pour équilibrer (le copyright est vraiment centré) -->
+        <!-- Zone vide (équilibre) -->
         <div class="hidden md:block flex-1"></div>
       </div>
     </div>

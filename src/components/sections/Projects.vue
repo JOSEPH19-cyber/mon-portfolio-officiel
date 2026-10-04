@@ -44,10 +44,8 @@ const toggleOverlay = (index) => {
           :style="{ transitionDelay: `${index * 100}ms` }"
           @click="toggleOverlay(index)"
         >
-          <!-- ============================================ -->
-          <!-- IMAGE DU PROJET                              -->
-          <!-- ============================================ -->
-          <div class="relative aspect-[16/10] overflow-hidden bg-dark-surface">
+          <!-- IMAGE DU PROJET -->
+          <div class="relative aspect-[16/10] overflow-hidden bg-slate-200 dark:bg-dark-surface">
             <img
               :src="project.image"
               :alt="project.title"
@@ -68,18 +66,17 @@ const toggleOverlay = (index) => {
                        md:translate-y-2 md:group-hover:translate-y-0"
                 :class="activeProjectIndex === index ? 'md:opacity-100 md:translate-y-0' : ''"
               >
-                <ArrowTopRightOnSquareIcon class="w-5 h-5 text-primary-400" />
+                <ArrowTopRightOnSquareIcon class="w-5 h-5 text-primary-600 dark:text-primary-400" />
               </div>
             </div>
 
-            <!-- ============================================ -->
-            <!-- OVERLAY (hover desktop + tap mobile)         -->
-            <!-- ============================================ -->
+            <!-- OVERLAY -->
             <div
               class="absolute inset-0 z-10
-                     bg-gradient-to-t from-dark-bg via-dark-bg/80 to-transparent
                      transition-opacity duration-500
                      flex flex-col justify-end p-6 md:p-8
+                     bg-gradient-to-t from-white via-white/90 to-transparent
+                     dark:from-dark-bg dark:via-dark-bg/80 dark:to-transparent
                      md:opacity-0 md:group-hover:opacity-100"
               :class="activeProjectIndex === index ? 'opacity-100' : 'opacity-0 md:opacity-0'"
             >
@@ -90,12 +87,12 @@ const toggleOverlay = (index) => {
                 :class="activeProjectIndex === index ? 'translate-y-0 md:translate-y-0' : 'translate-y-6 md:translate-y-6'"
               >
                 <!-- Titre -->
-                <h3 class="font-display text-2xl md:text-3xl font-bold text-white mb-3">
+                <h3 class="font-display text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-3">
                   {{ project.title }}
                 </h3>
 
                 <!-- Description -->
-                <p class="text-sm text-slate-300 leading-relaxed mb-4 line-clamp-3">
+                <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed mb-4 line-clamp-3">
                   {{ project.description }}
                 </p>
 
@@ -105,7 +102,7 @@ const toggleOverlay = (index) => {
                     v-for="tech in project.stack"
                     :key="tech"
                     class="px-2.5 py-1 rounded-full text-[10px] font-medium
-                           bg-primary-500/10 text-primary-400
+                           bg-primary-500/10 text-primary-600 dark:text-primary-400
                            border border-primary-500/30"
                   >
                     {{ tech }}
@@ -134,16 +131,14 @@ const toggleOverlay = (index) => {
             </div>
           </div>
 
-          <!-- ============================================ -->
-          <!-- TITRE SOUS L'IMAGE (visible par défaut)      -->
-          <!-- ============================================ -->
+          <!-- TITRE SOUS L'IMAGE -->
           <div
-            class="p-6 border-t border-white/5 transition-opacity duration-300
+            class="p-6 border-t border-slate-900/5 dark:border-white/5 transition-opacity duration-300
                    md:group-hover:opacity-0"
             :class="activeProjectIndex === index ? 'md:opacity-0 opacity-0' : ''"
           >
             <div class="flex items-center justify-between gap-4">
-              <h3 class="font-display text-lg font-bold text-white truncate">
+              <h3 class="font-display text-lg font-bold text-slate-900 dark:text-white truncate">
                 {{ project.title }}
               </h3>
               <ArrowTopRightOnSquareIcon class="w-4 h-4 text-slate-500 flex-shrink-0" />

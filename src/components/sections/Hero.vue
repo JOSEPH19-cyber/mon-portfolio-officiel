@@ -64,7 +64,7 @@ const runTypewriter = () => {
 }
 
 // --------------------------------------------
-// BADGES FLOTTANTS (avec icônes Devicon)
+// BADGES FLOTTANTS
 // --------------------------------------------
 const floatingBadges = [
   {
@@ -109,7 +109,7 @@ const socialLinks = [
     url: portfolio.socials.github,
     source: 'simple',
     icon: siGithub,
-    hoverColor: 'hover:text-white',
+    hoverColor: 'hover:text-slate-900 dark:hover:text-white',
   },
   {
     name: 'WhatsApp',
@@ -123,7 +123,7 @@ const socialLinks = [
     url: portfolio.socials.email,
     source: 'hero',
     component: EnvelopeIcon,
-    hoverColor: 'hover:text-primary-400',
+    hoverColor: 'hover:text-primary-600 dark:hover:text-primary-400',
   },
 ]
 
@@ -151,33 +151,39 @@ onUnmounted(() => {
       <!-- ============================================ -->
       <div class="reveal order-2 lg:order-1 text-center lg:text-left">
 
+        <!-- Label "Salut, je suis" -->
         <div class="flex items-center gap-3 mb-6 justify-center lg:justify-start">
           <span class="h-px w-8 bg-gradient-to-r from-transparent to-primary-500"></span>
-          <span class="text-sm font-semibold text-primary-500 uppercase tracking-[0.2em]">
+          <span class="text-sm font-semibold text-primary-600 dark:text-primary-400 uppercase tracking-[0.2em]">
             Salut, je suis
           </span>
         </div>
 
+        <!-- Nom -->
         <h1 class="font-display text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] mb-6">
-          <span class="text-white">{{ portfolio.identity.firstName }}</span>
+          <span class="text-slate-900 dark:text-white">{{ portfolio.identity.firstName }}</span>
           <span class="block lg:inline gradient-text">{{ portfolio.identity.lastName }}</span>
         </h1>
 
+        <!-- Typewriter -->
         <div class="h-10 md:h-12 mb-6 flex items-center justify-center lg:justify-start">
-          <span class="font-display text-xl md:text-2xl text-slate-300">
-            &gt; {{ typewriterText }}<span class="inline-block w-0.5 h-6 md:h-7 bg-primary-400 ml-1 animate-pulse"></span>
+          <span class="font-display text-xl md:text-2xl text-slate-700 dark:text-slate-300">
+            &gt; {{ typewriterText }}<span class="inline-block w-0.5 h-6 md:h-7 bg-primary-500 dark:bg-primary-400 ml-1 animate-pulse"></span>
           </span>
         </div>
 
-        <p class="text-slate-400 text-base md:text-lg max-w-xl mb-8 leading-relaxed mx-auto lg:mx-0">
+        <!-- Tagline -->
+        <p class="text-slate-600 dark:text-slate-400 text-base md:text-lg max-w-xl mb-8 leading-relaxed mx-auto lg:mx-0">
           {{ portfolio.identity.tagline }}
         </p>
 
+        <!-- Badge disponibilité -->
         <div class="flex items-center gap-2 mb-8 justify-center lg:justify-start">
-          <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-          <span class="text-sm text-slate-400">{{ portfolio.identity.availability }}</span>
+          <span class="w-2 h-2 rounded-full bg-green-500 dark:bg-green-400 animate-pulse"></span>
+          <span class="text-sm text-slate-600 dark:text-slate-400">{{ portfolio.identity.availability }}</span>
         </div>
 
+        <!-- CTA -->
         <div class="flex flex-wrap gap-4 mb-10 justify-center lg:justify-start">
           <a
             href="#projects"
@@ -198,7 +204,7 @@ onUnmounted(() => {
             target="_blank"
             rel="noopener noreferrer"
             class="group inline-flex items-center gap-2 px-6 py-3.5 rounded-xl
-                   glass font-semibold text-slate-100
+                   glass font-semibold text-slate-800 dark:text-slate-100
                    hover:-translate-y-1 hover:border-primary-500/40
                    transition-all duration-300"
           >
@@ -207,6 +213,7 @@ onUnmounted(() => {
           </a>
         </div>
 
+        <!-- Réseaux sociaux -->
         <div class="flex items-center gap-3 justify-center lg:justify-start">
           <a
             v-for="social in socialLinks"
@@ -216,10 +223,12 @@ onUnmounted(() => {
             rel="noopener noreferrer"
             :aria-label="social.name"
             class="group w-11 h-11 rounded-xl glass flex items-center justify-center
-                   text-slate-400 transition-all duration-300
-                   hover:scale-110 hover:border-primary-500/40 hover:bg-white/5"
+                   text-slate-500 dark:text-slate-400 transition-all duration-300
+                   hover:scale-110 hover:border-primary-500/40
+                   hover:bg-slate-900/5 dark:hover:bg-white/5"
             :class="social.hoverColor"
           >
+            <!-- Simple Icons -->
             <svg
               v-if="social.source === 'simple' && social.icon && social.icon.path"
               viewBox="0 0 24 24"
@@ -229,12 +238,14 @@ onUnmounted(() => {
               <path :d="social.icon.path" />
             </svg>
 
+            <!-- SVG local -->
             <component
               v-else-if="social.source === 'svg' && social.component"
               :is="social.component"
               class="w-5 h-5 fill-current"
             />
 
+            <!-- Heroicons -->
             <component
               v-else-if="social.source === 'hero' && social.component"
               :is="social.component"
@@ -250,13 +261,15 @@ onUnmounted(() => {
       <div class="reveal order-1 lg:order-2 flex justify-center lg:justify-end lg:self-center">
         <div class="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96">
 
+          <!-- Halo gradient rotatif -->
           <div
-            class="absolute inset-0 rounded-full blur-3xl opacity-60 animate-pulse"
+            class="absolute inset-0 rounded-full blur-3xl opacity-40 dark:opacity-60 animate-pulse"
             style="background: conic-gradient(from 0deg, #06b6d4, #8b5cf6, #06b6d4);"
           ></div>
 
+          <!-- Cercle glass + photo -->
           <div class="relative w-full h-full rounded-full glass p-3 animate-float">
-            <div class="w-full h-full rounded-full overflow-hidden bg-dark-surface flex items-center justify-center">
+            <div class="w-full h-full rounded-full overflow-hidden bg-slate-200 dark:bg-dark-surface flex items-center justify-center">
               <img
                 :src="portfolio.meta.photo"
                 :alt="portfolio.identity.fullName"
@@ -264,38 +277,35 @@ onUnmounted(() => {
                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
               />
               <div class="hidden w-full h-full items-center justify-center text-7xl">
-                 no photo
+                👨‍💻
               </div>
             </div>
           </div>
 
-          <!-- ============================================ -->
-          <!-- BADGES FLOTTANTS avec icônes Devicon          -->
-          <!-- ============================================ -->
+          <!-- Badges flottants -->
           <div
             v-for="badge in floatingBadges"
             :key="badge.name"
             :class="badge.position"
             class="absolute glass px-3 py-2 rounded-xl flex items-center gap-2 text-xs font-medium
-                   animate-float shadow-lg shadow-black/30"
+                   animate-float shadow-lg shadow-black/30 dark:shadow-black/30"
             :style="{ animationDelay: badge.delay }"
           >
-            <!-- Icône Devicon -->
             <component
               :is="badge.icon"
               class="w-4 h-4 flex-shrink-0"
             />
-            <!-- Nom -->
-            <span class="text-slate-200">{{ badge.name }}</span>
+            <span class="text-slate-800 dark:text-slate-200">{{ badge.name }}</span>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Indicateur de scroll -->
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 opacity-50">
       <span class="text-xs text-slate-500 uppercase tracking-widest">Défiler</span>
-      <div class="w-5 h-8 rounded-full border border-slate-600 flex justify-center pt-1.5">
-        <div class="w-1 h-2 rounded-full bg-primary-400 animate-bounce"></div>
+      <div class="w-5 h-8 rounded-full border border-slate-400 dark:border-slate-600 flex justify-center pt-1.5">
+        <div class="w-1 h-2 rounded-full bg-primary-500 dark:bg-primary-400 animate-bounce"></div>
       </div>
     </div>
   </section>

@@ -13,7 +13,6 @@ const activeSection = ref('#hero')
 const handleScroll = () => {
   scrolled.value = window.scrollY > 20
 
-  // Détection de la section active
   const sections = portfolio.navLinks.map((l) => l.href.replace('#', ''))
   const scrollPos = window.scrollY + 120
 
@@ -75,8 +74,8 @@ onUnmounted(() => {
             class="relative px-4 py-2 text-sm font-medium rounded-xl transition-all duration-300 cursor-pointer"
             :class="
               activeSection === link.href
-                ? 'text-primary-400 bg-primary-500/10'
-                : 'text-slate-400 hover:text-white hover:bg-white/5'
+                ? 'text-primary-600 dark:text-primary-400 bg-primary-500/10'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-900/5 dark:hover:bg-white/5'
             "
           >
             {{ link.name }}
@@ -84,7 +83,7 @@ onUnmounted(() => {
             <!-- Point actif -->
             <span
               v-if="activeSection === link.href"
-              class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary-400"
+              class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary-500 dark:bg-primary-400"
             ></span>
           </a>
         </li>
@@ -99,10 +98,10 @@ onUnmounted(() => {
           class="w-10 h-10 rounded-xl glass flex items-center justify-center transition-all duration-300 hover:scale-110 hover:border-primary-500/40"
         >
           <SunIcon v-if="isDark" class="w-5 h-5 text-yellow-400" />
-          <MoonIcon v-else class="w-5 h-5 text-primary-500" />
+          <MoonIcon v-else class="w-5 h-5 text-primary-600" />
         </button>
 
-        <!-- CTA Parlons-en (desktop) -->
+        <!-- CTA Parlons-en -->
         <a
           href="#contact"
           @click.prevent="scrollToSection('#contact')"
@@ -122,7 +121,8 @@ onUnmounted(() => {
         <button
           @click="mobileOpen = !mobileOpen"
           aria-label="Menu"
-          class="lg:hidden w-10 h-10 rounded-xl glass flex items-center justify-center transition-all duration-300"
+          class="lg:hidden w-10 h-10 rounded-xl glass flex items-center justify-center transition-all duration-300
+                 text-slate-700 dark:text-slate-200"
         >
           <XMarkIcon v-if="mobileOpen" class="w-6 h-6" />
           <Bars3Icon v-else class="w-6 h-6" />
@@ -151,8 +151,8 @@ onUnmounted(() => {
           class="block px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 cursor-pointer"
           :class="
             activeSection === link.href
-              ? 'text-primary-400 bg-primary-500/10'
-              : 'text-slate-300 hover:bg-white/5'
+              ? 'text-primary-600 dark:text-primary-400 bg-primary-500/10'
+              : 'text-slate-700 dark:text-slate-300 hover:bg-slate-900/5 dark:hover:bg-white/5'
           "
         >
           {{ link.name }}

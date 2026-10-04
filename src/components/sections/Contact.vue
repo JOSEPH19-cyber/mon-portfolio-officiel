@@ -55,7 +55,7 @@ const subjectOptions = [
 ]
 
 // --------------------------------------------
-// SOUMISSION DU FORMULAIRE
+// SOUMISSION
 // --------------------------------------------
 const submitForm = async () => {
   status.value = 'loading'
@@ -102,7 +102,6 @@ const submitForm = async () => {
 
 // --------------------------------------------
 // CARTES SOCIALES
-// source : 'simple' (Simple Icons) | 'hero' (Heroicons) | 'svg' (SVG local)
 // --------------------------------------------
 const socialCards = [
   {
@@ -113,7 +112,7 @@ const socialCards = [
     subtitle: 'Voir mon profil',
     color: 'from-blue-500/20 to-blue-600/10',
     border: 'hover:border-blue-500/40',
-    text: 'group-hover:text-blue-400',
+    text: 'group-hover:text-blue-600 dark:group-hover:text-blue-400',
   },
   {
     name: 'GitHub',
@@ -123,7 +122,7 @@ const socialCards = [
     subtitle: 'Voir mes repos',
     color: 'from-slate-500/20 to-slate-600/10',
     border: 'hover:border-slate-400/40',
-    text: 'group-hover:text-white',
+    text: 'group-hover:text-slate-900 dark:group-hover:text-white',
   },
   {
     name: 'WhatsApp',
@@ -133,7 +132,7 @@ const socialCards = [
     subtitle: 'Discuter en direct',
     color: 'from-green-500/20 to-green-600/10',
     border: 'hover:border-green-500/40',
-    text: 'group-hover:text-green-400',
+    text: 'group-hover:text-green-600 dark:group-hover:text-green-400',
   },
   {
     name: 'Email',
@@ -143,7 +142,7 @@ const socialCards = [
     subtitle: portfolio.identity.email,
     color: 'from-primary-500/20 to-accent-500/10',
     border: 'hover:border-primary-500/40',
-    text: 'group-hover:text-primary-400',
+    text: 'group-hover:text-primary-600 dark:group-hover:text-primary-400',
   },
 ]
 </script>
@@ -161,13 +160,16 @@ const socialCards = [
 
       <div class="grid lg:grid-cols-5 gap-6 md:gap-8">
 
-        <!-- FORMULAIRE -->
+        <!-- ============================================ -->
+        <!-- FORMULAIRE                                   -->
+        <!-- ============================================ -->
         <GlassCard :reveal="true" padding="p-6 md:p-8" class="lg:col-span-3">
           <form @submit.prevent="submitForm" class="space-y-5">
 
+            <!-- Nom + Email -->
             <div class="grid md:grid-cols-2 gap-5">
               <div>
-                <label for="name" class="block text-xs font-medium text-slate-400 uppercase tracking-wider mb-2">
+                <label for="name" class="block text-xs font-medium text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-2">
                   Nom
                 </label>
                 <input
@@ -177,15 +179,17 @@ const socialCards = [
                   required
                   placeholder="Ton nom complet"
                   class="w-full px-4 py-3 rounded-xl
-                         bg-white/5 border border-white/10
-                         text-slate-100 placeholder-slate-500
-                         focus:outline-none focus:border-primary-500/50 focus:bg-white/[0.07]
+                         bg-slate-900/5 dark:bg-white/5
+                         border border-slate-900/10 dark:border-white/10
+                         text-slate-900 dark:text-slate-100
+                         placeholder-slate-500 dark:placeholder-slate-500
+                         focus:outline-none focus:border-primary-500/50 focus:bg-slate-900/[0.07] dark:focus:bg-white/[0.07]
                          transition-all duration-300"
                 />
               </div>
 
               <div>
-                <label for="email" class="block text-xs font-medium text-slate-400 uppercase tracking-wider mb-2">
+                <label for="email" class="block text-xs font-medium text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-2">
                   Email
                 </label>
                 <input
@@ -195,16 +199,19 @@ const socialCards = [
                   required
                   placeholder="ton@email.com"
                   class="w-full px-4 py-3 rounded-xl
-                         bg-white/5 border border-white/10
-                         text-slate-100 placeholder-slate-500
-                         focus:outline-none focus:border-primary-500/50 focus:bg-white/[0.07]
+                         bg-slate-900/5 dark:bg-white/5
+                         border border-slate-900/10 dark:border-white/10
+                         text-slate-900 dark:text-slate-100
+                         placeholder-slate-500 dark:placeholder-slate-500
+                         focus:outline-none focus:border-primary-500/50 focus:bg-slate-900/[0.07] dark:focus:bg-white/[0.07]
                          transition-all duration-300"
                 />
               </div>
             </div>
 
+            <!-- Sujet -->
             <div>
-              <label for="subject" class="block text-xs font-medium text-slate-400 uppercase tracking-wider mb-2">
+              <label for="subject" class="block text-xs font-medium text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-2">
                 Sujet
               </label>
               <select
@@ -212,9 +219,10 @@ const socialCards = [
                 v-model="form.subject"
                 required
                 class="w-full px-4 py-3 rounded-xl
-                       bg-white/5 border border-white/10
-                       text-slate-100
-                       focus:outline-none focus:border-primary-500/50 focus:bg-white/[0.07]
+                       bg-slate-900/5 dark:bg-white/5
+                       border border-slate-900/10 dark:border-white/10
+                       text-slate-900 dark:text-slate-100
+                       focus:outline-none focus:border-primary-500/50 focus:bg-slate-900/[0.07] dark:focus:bg-white/[0.07]
                        transition-all duration-300
                        appearance-none cursor-pointer"
               >
@@ -223,15 +231,16 @@ const socialCards = [
                   :key="option.value"
                   :value="option.value"
                   :disabled="option.value === ''"
-                  class="bg-dark-surface text-slate-100"
+                  class="bg-white dark:bg-dark-surface text-slate-900 dark:text-slate-100"
                 >
                   {{ option.label }}
                 </option>
               </select>
             </div>
 
+            <!-- Message -->
             <div>
-              <label for="message" class="block text-xs font-medium text-slate-400 uppercase tracking-wider mb-2">
+              <label for="message" class="block text-xs font-medium text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-2">
                 Message
               </label>
               <textarea
@@ -241,13 +250,16 @@ const socialCards = [
                 rows="6"
                 placeholder="Décris-moi ton projet ou ta question..."
                 class="w-full px-4 py-3 rounded-xl
-                       bg-white/5 border border-white/10
-                       text-slate-100 placeholder-slate-500
-                       focus:outline-none focus:border-primary-500/50 focus:bg-white/[0.07]
+                       bg-slate-900/5 dark:bg-white/5
+                       border border-slate-900/10 dark:border-white/10
+                       text-slate-900 dark:text-slate-100
+                       placeholder-slate-500 dark:placeholder-slate-500
+                       focus:outline-none focus:border-primary-500/50 focus:bg-slate-900/[0.07] dark:focus:bg-white/[0.07]
                        transition-all duration-300 resize-none"
               ></textarea>
             </div>
 
+            <!-- Bouton submit -->
             <button
               type="submit"
               :disabled="status === 'loading'"
@@ -280,40 +292,44 @@ const socialCards = [
               </template>
             </button>
 
+            <!-- Succès -->
             <div
               v-if="status === 'success'"
               class="flex items-start gap-3 p-4 rounded-xl
                      bg-green-500/10 border border-green-500/30"
             >
-              <CheckCircleIcon class="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+              <CheckCircleIcon class="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
               <div>
-                <p class="text-sm font-medium text-green-400">Message envoyé avec succès !</p>
-                <p class="text-xs text-green-400/70 mt-1">Je te répondrai dans les plus brefs délais.</p>
+                <p class="text-sm font-medium text-green-600 dark:text-green-400">Message envoyé avec succès !</p>
+                <p class="text-xs text-green-600/70 dark:text-green-400/70 mt-1">Je te répondrai dans les plus brefs délais.</p>
               </div>
             </div>
 
+            <!-- Erreur -->
             <div
               v-if="status === 'error'"
               class="flex items-start gap-3 p-4 rounded-xl
                      bg-red-500/10 border border-red-500/30"
             >
-              <ExclamationCircleIcon class="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
+              <ExclamationCircleIcon class="w-5 h-5 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5" />
               <div>
-                <p class="text-sm font-medium text-red-400">Erreur d'envoi</p>
-                <p class="text-xs text-red-400/70 mt-1">{{ errorMessage }}</p>
+                <p class="text-sm font-medium text-red-600 dark:text-red-400">Erreur d'envoi</p>
+                <p class="text-xs text-red-600/70 dark:text-red-400/70 mt-1">{{ errorMessage }}</p>
               </div>
             </div>
           </form>
         </GlassCard>
 
-        <!-- CARTES SOCIALES -->
+        <!-- ============================================ -->
+        <!-- CARTES SOCIALES                              -->
+        <!-- ============================================ -->
         <div class="lg:col-span-2 space-y-4">
 
           <div class="reveal">
-            <h3 class="font-display text-xl font-bold text-white mb-1">
+            <h3 class="font-display text-xl font-bold text-slate-900 dark:text-white mb-1">
               Mes réseaux
             </h3>
-            <p class="text-sm text-slate-400">
+            <p class="text-sm text-slate-600 dark:text-slate-400">
               Retrouve-moi sur ces plateformes.
             </p>
           </div>
@@ -335,12 +351,12 @@ const socialCards = [
             <!-- Icône -->
             <div
               class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0
-                     bg-gradient-to-br border border-white/10
-                     text-slate-200
+                     bg-gradient-to-br border border-slate-900/10 dark:border-white/10
+                     text-slate-700 dark:text-slate-200
                      group-hover:scale-110 transition-all duration-300"
               :class="[social.color, social.text]"
             >
-              <!-- Simple Icons (GitHub, WhatsApp) -->
+              <!-- Simple Icons -->
               <svg
                 v-if="social.source === 'simple' && social.icon && social.icon.path"
                 viewBox="0 0 24 24"
@@ -350,14 +366,14 @@ const socialCards = [
                 <path :d="social.icon.path" />
               </svg>
 
-              <!-- SVG local (LinkedIn) -->
+              <!-- SVG local -->
               <component
                 v-else-if="social.source === 'svg' && social.component"
                 :is="social.component"
                 class="w-6 h-6 fill-current"
               />
 
-              <!-- Heroicons (Email) -->
+              <!-- Heroicons -->
               <component
                 v-else-if="social.source === 'hero' && social.component"
                 :is="social.component"
@@ -367,7 +383,7 @@ const socialCards = [
 
             <!-- Texte -->
             <div class="flex-1 min-w-0">
-              <p class="font-semibold text-sm text-slate-200 transition-colors">
+              <p class="font-semibold text-sm text-slate-800 dark:text-slate-200 transition-colors">
                 {{ social.name }}
               </p>
               <p class="text-xs text-slate-500 truncate">
@@ -378,7 +394,7 @@ const socialCards = [
             <!-- Flèche -->
             <ArrowTopRightOnSquareIcon
               class="w-4 h-4 text-slate-500 flex-shrink-0
-                     group-hover:text-primary-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5
+                     group-hover:text-primary-600 dark:group-hover:text-primary-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5
                      transition-all duration-300"
             />
           </a>
@@ -387,11 +403,11 @@ const socialCards = [
           <GlassCard :reveal="true" padding="p-4" class="!bg-gradient-to-br !from-green-500/5 !to-primary-500/5">
             <div class="flex items-center gap-3">
               <span class="relative flex h-2.5 w-2.5">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 dark:bg-green-400 opacity-75"></span>
                 <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
               </span>
-              <p class="text-xs text-slate-300">
-                <span class="font-semibold text-green-400">Disponible</span> pour de nouveaux projets
+              <p class="text-xs text-slate-700 dark:text-slate-300">
+                <span class="font-semibold text-green-600 dark:text-green-400">Disponible</span> pour de nouveaux projets
               </p>
             </div>
           </GlassCard>

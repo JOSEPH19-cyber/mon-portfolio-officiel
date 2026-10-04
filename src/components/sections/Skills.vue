@@ -72,21 +72,19 @@ const categoryIcons = {
           :reveal="true"
           padding="p-6 md:p-8"
         >
-          <!-- ============================================ -->
-          <!-- Header de catégorie                          -->
-          <!-- ============================================ -->
+          <!-- Header de catégorie -->
           <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-3 mb-6">
             <!-- Icône + Titre -->
             <div class="flex items-center gap-3 min-w-0 md:flex-1">
               <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500/15 to-accent-500/15 border border-primary-500/20 flex items-center justify-center flex-shrink-0">
-                <component :is="categoryIcons[category.icon]" class="w-5 h-5 text-primary-400" />
+                <component :is="categoryIcons[category.icon]" class="w-5 h-5 text-primary-600 dark:text-primary-400" />
               </div>
-              <h3 class="font-display text-lg md:text-xl font-bold text-white">
+              <h3 class="font-display text-lg md:text-xl font-bold text-slate-900 dark:text-white">
                 {{ category.category }}
               </h3>
             </div>
 
-            <!-- Compteur (aligné sous le titre sur mobile grâce à pl-13) -->
+            <!-- Compteur -->
             <span class="text-xs text-slate-500 font-medium whitespace-nowrap
                          pl-13 md:pl-0 md:ml-auto">
               {{ category.items.length }} {{ category.items.length > 1 ? 'technos' : 'techno' }}
@@ -99,7 +97,8 @@ const categoryIcons = {
               v-for="skill in category.items"
               :key="skill.name"
               class="group flex items-center gap-2.5 px-4 py-2.5 rounded-xl
-                     bg-white/[0.03] border border-white/10
+                     bg-slate-900/[0.03] dark:bg-white/[0.03]
+                     border border-slate-900/10 dark:border-white/10
                      hover:border-primary-500/40 hover:bg-primary-500/5
                      hover:-translate-y-0.5
                      transition-all duration-300 cursor-default"
@@ -113,10 +112,11 @@ const categoryIcons = {
                 v-else
                 class="w-6 h-6 flex-shrink-0 rounded-md bg-gradient-to-br from-primary-500/20 to-accent-500/20 flex items-center justify-center"
               >
-                <span class="text-[10px] font-bold text-primary-400">{{ skill.name[0] }}</span>
+                <span class="text-[10px] font-bold text-primary-600 dark:text-primary-400">{{ skill.name[0] }}</span>
               </div>
 
-              <span class="text-sm font-medium text-slate-300 group-hover:text-white transition-colors">
+              <span class="text-sm font-medium text-slate-700 dark:text-slate-300
+                           group-hover:text-slate-900 dark:group-hover:text-white transition-colors">
                 {{ skill.name }}
               </span>
             </div>
